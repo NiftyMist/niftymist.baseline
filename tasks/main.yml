@@ -1,0 +1,21 @@
+---
+# tasks file for niftymist.baseline
+- name: ensure ansible user is created
+  user:
+    name: "{{ baseline_ansible_user }}"
+    state: present
+    password: "{{ ansible_password|password_hash('sha512') }}"
+
+- name: ensure ansible user has deployed ssh key
+  authorized_key:
+    user: "{{ baseline_ansible_user }}"
+    state: present
+    key: "{{ lookup('file', '/home/dmitchell/.ssh/ansible.pub') }}"
+
+- name: deploy sudoers files
+  template:
+    src: sudoers.d.j2
+    dest: /etc/sudoers.d/ansible
+    owner: root
+    group: root
+    mode: 0644
