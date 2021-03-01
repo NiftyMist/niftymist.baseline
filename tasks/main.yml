@@ -52,6 +52,7 @@
     line: "{{ item }}"
     owner: "{{ baseline_standard_user }}"
     group: "{{ baseline_standard_user }}"
+    create: yes
   with_items:
     - HISTFILE=~/.histfile
     - HISTSIZE=1000
