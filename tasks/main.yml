@@ -45,3 +45,14 @@
     owner: root
     group: root
     mode: 0644
+
+- name: ensure zsh history is configured
+  lineinfile:
+    path: "/home/{{ baseline_standard_user }}/.zshrc"
+    line: "{{ item }}"
+    owner: "{{ baseline_standard_user }}"
+    group: "{{ baseline_standard_user }}"
+  with_items:
+    - HISTFILE=~/.histfile
+    - HISTSIZE=1000
+    - SAVEHIST=1000
