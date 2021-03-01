@@ -1,5 +1,10 @@
 ---
 # tasks file for niftymist.baseline
+- name: install zsh
+  package:
+    name: zsh
+    state: present
+
 - name: ensure ansible user is created
   user:
     name: "{{ baseline_ansible_user }}"
@@ -16,6 +21,7 @@
   user:
     name: "{{ baseline_standard_user }}"
     state: present
+    shell: /bin/zsh
     password: "{{ baseline_standard_password }}"
 
 - name: ensure ansible user has deployed ssh key
