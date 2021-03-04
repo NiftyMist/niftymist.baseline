@@ -46,14 +46,9 @@
     group: root
     mode: 0644
 
-- name: ensure zsh history is configured
-  lineinfile:
-    path: "/home/{{ baseline_standard_user }}/.zshrc"
-    line: "{{ item }}"
-    owner: "{{ baseline_standard_user }}"
-    group: "{{ baseline_standard_user }}"
-    create: yes
-  with_items:
-    - HISTFILE=~/.histfile
-    - HISTSIZE=1000
-    - SAVEHIST=1000
+- name: get ohmyzsh install script
+  get_url:
+    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: "/home/{{ baseline_standard_user }}/install.sh"
+    mode: 0777
+  become_user: "{{ baseline_standard_user }}"
