@@ -51,4 +51,5 @@
     url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
     dest: "/home/{{ baseline_standard_user }}/install.sh"
     mode: 0777
-  become_user: "{{ baseline_standard_user }}"
+    owner: "{{ baseline_standard_user }}"
+    group: "{{ baseline_standard_user }}"
