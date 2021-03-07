@@ -54,8 +54,8 @@
     owner: "{{ baseline_standard_user }}"
     group: "{{ baseline_standard_user }}"
 
-- name: install ohmyzsh
-  command: "/home/{{ baseline_standard_user }}/install.sh"
-  become: yes
-  become_method: su
-  become_user: "{{ baseline_standard_user }}"
+#- name: install ohmyzsh
+#  command: "/home/{{ baseline_standard_user }}/install.sh"
+#  become: yes
+#  become_method: su
+#  become_user: "{{ baseline_standard_user }}"
