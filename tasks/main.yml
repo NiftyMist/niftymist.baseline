@@ -15,7 +15,7 @@
   authorized_key:
     user: "{{ baseline_ansible_user }}"
     state: present
-    key: "{{ lookup('file', '/home/dmitchell/.ssh/ansible.pub') }}"
+    key: "{{ lookup('file', '/home/dmitchell/.ssh/id_ed25519_ansible.pub') }}"
 
 - name: ensure standard user is created
   user:
@@ -28,7 +28,7 @@
   authorized_key:
     user: "{{ baseline_standard_user }}"
     state: present
-    key: "{{ lookup('file', '/home/dmitchell/.ssh/id_rsa.pub') }}"
+    key: "{{ lookup('file', '/home/dmitchell/.ssh/id_ed25519.pub') }}"
 
 - name: deploy ansible sudoers files
   template:
