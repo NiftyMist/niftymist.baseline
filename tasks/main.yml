@@ -28,7 +28,7 @@
   authorized_key:
     user: "{{ baseline_standard_user }}"
     state: present
-    key: "{{ lookup('file', '/home/dmitchell/.ssh/id_ed25519.pub') }}"
+    key: https://github.com/NiftyMist.keys
 
 - name: deploy ansible sudoers files
   template:
