@@ -31,7 +31,7 @@
     state: present
     key: "{{ baseline_standard_user_pub_key_url }}"
 
-- name: deploy ansible sudoers files
+- name: deploy ansible sudoers file
   template:
     src: nopasswd.j2
     dest: "/etc/sudoers.d/{{ baseline_ansible_user }}"
@@ -39,7 +39,7 @@
     group: root
     mode: 0644
 
-- name: deploy standard sudoers files
+- name: deploy standard sudoers file
   template:
     src: passwd.j2
     dest: "/etc/sudoers.d/{{ baseline_standard_user }}"
