@@ -1,6 +1,6 @@
 ---
 # tasks file for niftymist.baseline
-#- name: install baseline packages
+# - name: install baseline packages
 #  package:
 #    name:
 #      - htop
@@ -55,7 +55,7 @@
     owner: "{{ baseline_standard_user }}"
     group: "{{ baseline_standard_user }}"
 
-#- name: install ohmyzsh
+# - name: install ohmyzsh
 #  command: "/home/{{ baseline_standard_user }}/install.sh"
 #  become: yes
 #  become_method: su
