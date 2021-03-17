@@ -7,7 +7,7 @@ platforms:
   - name: niftymist-baseline
     image: ubuntu2004
 provisioner:
-  name: "ubuntu/20.04:latest"
+  name: "ubuntu:focal"
   config_options:
     defaults:
       stdout_callback: yaml
