@@ -7,6 +7,8 @@
     baseline_ansible_password: $6$3M8kvHfuwoWRLjV9$35g9QOyADJLwlXDYoL5BUpvxQL9FdPpYCuzGAu8frbQtjkNJELrNvLQ8SsUH2l5r3dnS4dE7mKluy7eP.uR9u1
     baseline_standard_user: skywalker
     baseline_standard_password: $6$3j.GN93Z5o9HlTV/$YAugG0rHOuVfvFobcrgmNkRE7o3c1S7xTJWEE74/4q5Bnd45b.E6jaA4xnFAThXbqLu/dFzvTzuS.g.SkazqP.
+    baseline_ansible_user_pub_key_url: "https://github.com/NifytMist.keys"
+    baseline_standard_user_pub_key_url: "https://github.com/NifytMist.keys"
   tasks:
     - name: "Include niftymist.baseline"
       include_role:

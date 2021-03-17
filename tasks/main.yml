@@ -1,9 +1,9 @@
 ---
 # tasks file for niftymist.baseline
-- name: install zsh
-  package:
-    name: zsh
-    state: present
+#- name: install zsh
+#  package:
+#    name: zsh
+#    state: present
 
 - name: ensure ansible user is created
   user:
@@ -15,7 +15,7 @@
   authorized_key:
     user: "{{ baseline_ansible_user }}"
     state: present
-    key: "{{ lookup('file', '/home/dmitchell/.ssh/id_ed25519_ansible.pub') }}"
+    key: "{{ baseline_ansible_user_pub_key_url }}"
 
 - name: ensure standard user is created
   user:
@@ -28,7 +28,7 @@
   authorized_key:
     user: "{{ baseline_standard_user }}"
     state: present
-    key: https://github.com/NiftyMist.keys
+    key: "{{ baseline_standard_user_pub_key_url }}"
 
 - name: deploy ansible sudoers files
   template:
