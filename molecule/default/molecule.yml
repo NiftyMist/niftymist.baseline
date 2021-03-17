@@ -2,21 +2,19 @@
 dependency:
   name: galaxy
 driver:
-  name: vagrant
-  provider:
-    name: virtualbox
+  name: docker
 platforms:
   - name: niftymist-baseline
-    box: generic/ubuntu2004
+    image: ubuntu2004
 provisioner:
-  name: ansible
+  name: "ansible/20.04:latest"
   config_options:
     defaults:
       stdout_callback: yaml
       bin_ansible_callback: true
 verifier:
   name: ansible
-lint: |
-  set -e
-  yamllint .
-  ansible-lint .
+#lint: |
+#  set -e
+#  yamllint .
+#  ansible-lint .
