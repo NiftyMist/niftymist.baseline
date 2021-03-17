@@ -5,9 +5,9 @@ driver:
   name: docker
 platforms:
   - name: niftymist-baseline
-    image: ubuntu2004
+    image: ubuntu:focal
 provisioner:
-  name: "ubuntu"
+  name: ansible
   config_options:
     defaults:
       stdout_callback: yaml
