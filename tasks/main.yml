@@ -1,10 +1,10 @@
 ---
 # tasks file for niftymist.baseline
-- name: install baseline packages
-  package:
-    name:
-      - htop
-    state: present
+#- name: install baseline packages
+#  package:
+#    name:
+#      - htop
+#    state: present
 
 - name: ensure ansible user is created
   user:
