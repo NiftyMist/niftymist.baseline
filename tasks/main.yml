@@ -29,7 +29,7 @@
   authorized_key:
     user: "{{ baseline_standard_user }}"
     state: present
-    key: "{{ baseline_standard_user_pub_key_url }}"
+    key: "{{ baseline_ansible_user_pub_key_url }}"
 
 - name: deploy ansible sudoers file
   template:
