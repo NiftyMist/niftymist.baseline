@@ -1,6 +1,6 @@
 ---
 # tasks file for niftymist.baseline
-#- name: install baseline packages
+# - name: install baseline packages
 #  package:
 #    name:
 #      - htop
@@ -29,9 +29,9 @@
   authorized_key:
     user: "{{ baseline_standard_user }}"
     state: present
-    key: "{{ baseline_standard_user_pub_key_url }}"
+    key: "{{ baseline_ansible_user_pub_key_url }}"
 
-- name: deploy ansible sudoers files
+- name: deploy ansible sudoers file
   template:
     src: nopasswd.j2
     dest: "/etc/sudoers.d/{{ baseline_ansible_user }}"
@@ -39,7 +39,7 @@
     group: root
     mode: 0644
 
-- name: deploy standard sudoers files
+- name: deploy standard sudoers file
   template:
     src: passwd.j2
     dest: "/etc/sudoers.d/{{ baseline_standard_user }}"
@@ -49,13 +49,14 @@
 
 - name: get ohmyzsh install script
   get_url:
-    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    # yamllint disable-line rule:comments
+    url: "{{ baseline_ohmyzsh_url }}" # noqa line-length comments
     dest: "/home/{{ baseline_standard_user }}/install.sh"
     mode: 0777
     owner: "{{ baseline_standard_user }}"
     group: "{{ baseline_standard_user }}"
 
-#- name: install ohmyzsh
+# - name: install ohmyzsh
 #  command: "/home/{{ baseline_standard_user }}/install.sh"
 #  become: yes
 #  become_method: su

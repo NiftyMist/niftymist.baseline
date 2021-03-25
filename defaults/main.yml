@@ -2,3 +2,5 @@
 baseline_ansible_user: ansible
 baseline_ansible_user_pub_key_url: ""
 baseline_standard_user_pub_key_url: ""
+# yamllint disable-line rule:line-length
+baseline_ohmyzsh_url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
