@@ -4,9 +4,11 @@
   become: true
   vars:
     baseline_ansible_user: ansible
-    baseline_ansible_password: $6$u5vO2.ctI8dhAC2w$cCKzrf1hJCDiVla.FoTJlwv2oticvpd54OTAdSBAuaPqEfMgOGAOpkdb3cxfHE3T5nyzGEtlFDfCw5JZQmiOp. # noqa line-length
+    # yamllint disable-line rule:line-length
+    baseline_ansible_password: $6$u5vO2.ctI8dhAC2w$cCKzrf1hJCDiVla.FoTJlwv2oticvpd54OTAdSBAuaPqEfMgOGAOpkdb3cxfHE3T5nyzGEtlFDfCw5JZQmiOp.
     baseline_standard_user: skywalker
-    baseline_standard_password: $6$u5vO2.ctI8dhAC2w$cCKzrf1hJCDiVla.FoTJlwv2oticvpd54OTAdSBAuaPqEfMgOGAOpkdb3cxfHE3T5nyzGEtlFDfCw5JZQmiOp. # noqa line-length
+    # yamllint disable-line rule:line-length
+    baseline_standard_password: $6$u5vO2.ctI8dhAC2w$cCKzrf1hJCDiVla.FoTJlwv2oticvpd54OTAdSBAuaPqEfMgOGAOpkdb3cxfHE3T5nyzGEtlFDfCw5JZQmiOp.
     baseline_ansible_user_pub_key_url: "https://github.com/NiftyMist.keys"
     baseline_standard_user_pub_key_url: "https://github.com/NiftyMist.keys"
   tasks:

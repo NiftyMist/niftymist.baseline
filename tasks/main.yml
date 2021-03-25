@@ -49,7 +49,8 @@
 
 - name: get ohmyzsh install script
   get_url:
-    url: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh # noqa line-length comments
+    # yamllint disable-line rule:comments
+    url: "{{ baseline_ohmyzsh_url }}" # noqa line-length comments
     dest: "/home/{{ baseline_standard_user }}/install.sh"
     mode: 0777
     owner: "{{ baseline_standard_user }}"
