@@ -15,7 +15,7 @@ Role Variables
 
 | Variable | Required? | Default | Notes |
 |------|------|------|------|
-| baseline_packages | yes | `vim` and `zsh` | list of packages to install |
+| baseline_packages | yes | `vim`, `zsh` and `git` | list of packages to install |
 | baseline_ansible_user | no | `ansible` | user to be created for ansible automation |
 | baseline_ansible_password | yes | N/A | ansible user password encrypted |
 | baseline_standard_user | yes | N/A | user to be created for non automated use |
