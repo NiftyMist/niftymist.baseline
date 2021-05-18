@@ -1,31 +1,42 @@
-Role Name
+![molecule test](https://github.com/NiftyMist/niftymist.baseline/actions/workflows/molecule.yml/badge.svg)
+
+niftymist.baseline
 =========
 
-A brief description of the role goes here.
+A baseline configuration.  Sets up users and ssh keys and installs packages that I like to have installed on all my systems.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+| Variable | Required? | Default | Notes |
+|------|------|------|------|
+| baseline_packages | yes | `vim` and `zsh` | list of packages to install |
+| baseline_ansible_user | no | `ansible` | user to be created for ansible automation |
+| baseline_ansible_password | yes | N/A | ansible user password encrypted |
+| baseline_standard_user | yes | N/A | user to be created for non automated use |
+| baseline_standard_password | yes | N/A | standard user password encrypted |
+| baseline_ansible_user_pub_key_url | no | `""` | url to ansible user public key to be installed |
+| baseline_standard_user_pub_key_url | no | `""` | url to standard user public key to be installed |
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+N/A
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: all
+      become: yes
       roles:
-         - { role: username.rolename, x: 42 }
+         - nfitymist.baseline
 
 License
 -------
@@ -35,5 +46,6 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Dylan Mitchell
+mdmitch92@gmail.com
 # niftymist.baseline

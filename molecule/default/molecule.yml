@@ -6,6 +6,8 @@ driver:
 platforms:
   - name: niftymist-baseline-ubuntu-2004
     image: ubuntu:20.04
+  - name: niftymist-baseline-ubuntu-2010
+    image: ubuntu:20.10
 provisioner:
   name: ansible
   config_options:
