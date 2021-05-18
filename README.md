@@ -1,6 +1,4 @@
-| CI Status|
-|------|
-|![molecule test](https://github.com/NiftyMist/niftymist.baseline/actions/workflows/molecule.yml/badge.svg)|
+![molecule test](https://github.com/NiftyMist/niftymist.baseline/actions/workflows/molecule.yml/badge.svg)
 
 niftymist.baseline
 =========
