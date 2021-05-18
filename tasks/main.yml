@@ -4,6 +4,18 @@
   package:
     name: "{{ baseline_packages }}"
     state: present
+  register: package_install
+
+- name: update apt cache if needed
+  apt:
+    update_cache: yes
+  when: package_install.failed
+
+- name: install baseline packages if failed
+  package:
+    name: "{{ baseline_packages }}"
+    state: present
+  when: package_install.failed
 
 - name: ensure ansible user is created
   user:

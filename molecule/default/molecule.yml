@@ -4,8 +4,8 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: niftymist-baseline
-    image: geerlingguy/docker-ubuntu2004-ansible
+  - name: niftymist-baseline-ubuntu-2004
+    image: ubuntu:20.04
 provisioner:
   name: ansible
   config_options:
