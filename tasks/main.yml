@@ -68,8 +68,19 @@
     owner: "{{ baseline_standard_user }}"
     group: "{{ baseline_standard_user }}"
 
-# - name: install ohmyzsh
-#  command: "/home/{{ baseline_standard_user }}/install.sh"
-#  become: yes
-#  become_method: su
-#  become_user: "{{ baseline_standard_user }}"
+- name: install ohmyzsh
+  command: "/home/{{ baseline_standard_user }}/install.sh"
+  become: yes
+  become_method: su
+  become_user: "{{ baseline_standard_user }}"
+  register: ohmyzsh
+  args:
+    creates: /etc/ohmyzsh-installed
+
+- name: Create ohmyzsh marker file
+  file:
+    path: /etc/ohmyzsh-installed
+    state: touch
+    owner: root
+    group: root
+    mode: 0600
