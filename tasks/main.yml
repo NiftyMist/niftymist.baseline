@@ -5,6 +5,7 @@
     name: "{{ baseline_packages }}"
     state: present
   register: package_install
+  ignore_errors: yes
 
 - name: update apt cache if needed
   apt:
