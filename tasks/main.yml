@@ -1,10 +1,22 @@
 ---
 # tasks file for niftymist.baseline
-# - name: install baseline packages
-#  package:
-#    name:
-#      - htop
-#    state: present
+- name: install baseline packages
+  package:
+    name: "{{ baseline_packages }}"
+    state: present
+  register: package_install
+  ignore_errors: yes
+
+- name: update apt cache if needed
+  apt:
+    update_cache: yes
+  when: package_install.failed
+
+- name: install baseline packages if failed
+  package:
+    name: "{{ baseline_packages }}"
+    state: present
+  when: package_install.failed
 
 - name: ensure ansible user is created
   user:

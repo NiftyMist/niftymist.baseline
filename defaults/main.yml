@@ -1,4 +1,7 @@
 ---
+baseline_packages:
+  - vim
+  - htop
 baseline_ansible_user: ansible
 baseline_ansible_user_pub_key_url: ""
 baseline_standard_user_pub_key_url: ""
