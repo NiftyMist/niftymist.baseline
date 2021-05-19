@@ -76,11 +76,4 @@
   register: ohmyzsh
   args:
     creates: /etc/ohmyzsh-installed
-
-- name: Create ohmyzsh marker file
-  file:
-    path: /etc/ohmyzsh-installed
-    state: touch
-    owner: root
-    group: root
-    mode: 0600
+  notify: ohmyzsh-marker
