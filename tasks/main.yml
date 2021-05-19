@@ -5,11 +5,11 @@
     name: "{{ baseline_packages }}"
     state: present
   register: package_install
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: update apt cache if needed
   apt:
-    update_cache: yes
+    update_cache: true
   when: package_install.failed
 
 - name: install baseline packages if failed
@@ -61,8 +61,7 @@
 
 - name: get ohmyzsh install script
   get_url:
-    # yamllint disable-line rule:comments
-    url: "{{ baseline_ohmyzsh_url }}" # noqa line-length comments
+    url: "{{ baseline_ohmyzsh_url }}"
     dest: "/home/{{ baseline_standard_user }}/install.sh"
     mode: 0777
     owner: "{{ baseline_standard_user }}"
@@ -70,7 +69,7 @@
 
 - name: install ohmyzsh
   command: "/home/{{ baseline_standard_user }}/install.sh"
-  become: yes
+  become: true
   become_method: su
   become_user: "{{ baseline_standard_user }}"
   register: ohmyzsh
