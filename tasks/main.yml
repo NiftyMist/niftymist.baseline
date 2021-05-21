@@ -29,7 +29,7 @@
     user: "{{ baseline_ansible_user }}"
     state: present
     key: "{{ baseline_ansible_user_pub_key_url | default(omit) }}"
-  when: baseline_ansible_user_pub_key_url
+  when: baseline_ansible_user_pub_key_url is defined
 
 - name: ensure standard user is created
   user:
@@ -37,13 +37,14 @@
     state: present
     shell: /bin/bash
     password: "{{ baseline_standard_password | default('changeme') }}"
+  when: baseline_standard_user is defined
 
 - name: ensure ansible user has deployed ssh key
   authorized_key:
     user: "{{ baseline_standard_user }}"
     state: present
     key: "{{ baseline_ansible_user_pub_key_url | default(omit) }}"
-  when: baseline_ansible_user_pub_key_url
+  when: baseline_ansible_user_pub_key_url is defined
 
 - name: deploy ansible sudoers file
   template:
@@ -60,6 +61,7 @@
     owner: root
     group: root
     mode: 0644
+  when: baseline_standard_user is defined
 
 - name: deploy /etc/motd
   template:
