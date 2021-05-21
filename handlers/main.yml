@@ -1,9 +1,2 @@
 ---
 # handlers file for niftymist.baseline
-- name: ohmyzsh-marker
-  file:
-    path: /etc/ohmyzsh-installed
-    state: touch
-    owner: root
-    group: root
-    mode: 0600
