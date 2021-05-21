@@ -23,6 +23,7 @@
     name: "{{ baseline_ansible_user }}"
     state: present
     password: "{{ baseline_ansible_password }}"
+  no_log: true
 
 - name: ensure ansible user has deployed ssh key
   authorized_key:
@@ -36,6 +37,7 @@
     state: present
     shell: /bin/zsh
     password: "{{ baseline_standard_password }}"
+  no_log: true
 
 - name: ensure ansible user has deployed ssh key
   authorized_key:
@@ -58,21 +60,3 @@
     owner: root
     group: root
     mode: 0644
-
-- name: get ohmyzsh install script
-  get_url:
-    url: "{{ baseline_ohmyzsh_url }}"
-    dest: "/home/{{ baseline_standard_user }}/install.sh"
-    mode: 0777
-    owner: "{{ baseline_standard_user }}"
-    group: "{{ baseline_standard_user }}"
-
-- name: install ohmyzsh
-  command: "/home/{{ baseline_standard_user }}/install.sh"
-  become: true
-  become_method: su
-  become_user: "{{ baseline_standard_user }}"
-  register: ohmyzsh
-  args:
-    creates: /etc/ohmyzsh-installed
-  notify: ohmyzsh-marker
