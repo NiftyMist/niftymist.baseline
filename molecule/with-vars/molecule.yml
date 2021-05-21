@@ -1,0 +1,22 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: niftymist-baseline-ubuntu-2004
+    image: ubuntu:20.04
+  - name: niftymist-baseline-ubuntu-2010
+    image: ubuntu:20.10
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      stdout_callback: yaml
+      bin_ansible_callback: true
+verifier:
+  name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint .
