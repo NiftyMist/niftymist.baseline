@@ -22,26 +22,29 @@
   user:
     name: "{{ baseline_ansible_user }}"
     state: present
-    password: "{{ baseline_ansible_password }}"
+    password: "{{ baseline_ansible_password | default('changeme') }}"
 
 - name: ensure ansible user has deployed ssh key
   authorized_key:
     user: "{{ baseline_ansible_user }}"
     state: present
-    key: "{{ baseline_ansible_user_pub_key_url }}"
+    key: "{{ baseline_ansible_user_pub_key_url | default(omit) }}"
+  when: baseline_ansible_user_pub_key_url is defined
 
 - name: ensure standard user is created
   user:
     name: "{{ baseline_standard_user }}"
     state: present
-    shell: /bin/zsh
-    password: "{{ baseline_standard_password }}"
+    shell: /bin/bash
+    password: "{{ baseline_standard_password | default('changeme') }}"
+  when: baseline_standard_user is defined
 
 - name: ensure ansible user has deployed ssh key
   authorized_key:
     user: "{{ baseline_standard_user }}"
     state: present
-    key: "{{ baseline_ansible_user_pub_key_url }}"
+    key: "{{ baseline_ansible_user_pub_key_url | default(omit) }}"
+  when: baseline_ansible_user_pub_key_url is defined
 
 - name: deploy ansible sudoers file
   template:
@@ -58,21 +61,12 @@
     owner: root
     group: root
     mode: 0644
+  when: baseline_standard_user is defined
 
-- name: get ohmyzsh install script
-  get_url:
-    url: "{{ baseline_ohmyzsh_url }}"
-    dest: "/home/{{ baseline_standard_user }}/install.sh"
-    mode: 0777
-    owner: "{{ baseline_standard_user }}"
-    group: "{{ baseline_standard_user }}"
-
-- name: install ohmyzsh
-  command: "/home/{{ baseline_standard_user }}/install.sh"
-  become: true
-  become_method: su
-  become_user: "{{ baseline_standard_user }}"
-  register: ohmyzsh
-  args:
-    creates: /etc/ohmyzsh-installed
-  notify: ohmyzsh-marker
+- name: deploy /etc/motd
+  template:
+    src: motd.j2
+    dest: /etc/motd
+    owner: root
+    group: root
+    mode: 0644
