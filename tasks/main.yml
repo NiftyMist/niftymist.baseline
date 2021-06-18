@@ -23,6 +23,7 @@
     name: "{{ baseline_ansible_user }}"
     state: present
     password: "{{ baseline_ansible_password | default('changeme') }}"
+  no_log: true
 
 - name: ensure ansible user has deployed ssh key
   authorized_key:
@@ -37,6 +38,7 @@
     state: present
     shell: /bin/bash
     password: "{{ baseline_standard_password | default('changeme') }}"
+  no_log: true
   when: baseline_standard_user is defined
 
 - name: ensure ansible user has deployed ssh key
@@ -61,6 +63,7 @@
     owner: root
     group: root
     mode: 0644
+
   when: baseline_standard_user is defined
 
 - name: deploy /etc/motd
