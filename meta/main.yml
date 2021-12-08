@@ -3,7 +3,7 @@ dependencies: []
 
 galaxy_info:
   role_name: baseline
-  author: geerlingguy
+  author: NiftyMist
   description: My baseline config.
   license: "license (BSD, MIT)"
   min_ansible_version: 2.4
