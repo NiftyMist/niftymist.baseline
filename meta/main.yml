@@ -1,13 +1,27 @@
 ---
+dependencies: []
+
 galaxy_info:
   role_name: baseline
-  author: niftymist
-  description: sets up baseline config
-  license: GPL-3.0-only
-  min_ansible_version: 2.1
+  author: geerlingguy
+  description: My baseline config.
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.4
   platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Fedora
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - stretch
+        - buster
+        - bullseye
     - name: Ubuntu
       versions:
-        - 20.04
-  galaxy_tags: []
-dependencies: []
+        - xenial
+        - bionic
+        - focal
