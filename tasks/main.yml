@@ -1,5 +1,10 @@
 ---
 # tasks file for niftymist.baseline
+- name: update apt cache
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
+
 - name: install baseline packages
   package:
     name: "{{ baseline_packages }}"
@@ -7,16 +12,18 @@
   register: package_install
   ignore_errors: true
 
-- name: update apt cache if needed
-  apt:
-    update_cache: true
-  when: package_install.failed
-
 - name: install baseline packages if failed
   package:
     name: "{{ baseline_packages }}"
     state: present
   when: package_install.failed
+
+- name: create groups
+  group:
+    state: present
+    name: "{{ item }}"
+  with_items: "{{ baseline_groups }}"
+  when: baseline_groups is defined
 
 - name: ensure ansible user is created
   user:
@@ -73,3 +80,11 @@
     owner: root
     group: root
     mode: 0644
+
+- name: set roots bash prompt
+  template:
+    src: root-bashrc
+    dest: /root/.bashrc
+    owner: root
+    group: root
+    mode: 0544
