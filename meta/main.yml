@@ -3,14 +3,14 @@ dependencies: []
 
 galaxy_info:
   role_name: baseline
-  author: NiftyMist
+  author: niftymist
   description: My baseline config.
   license: "license (BSD, MIT)"
   min_ansible_version: 2.4
   platforms:
     - name: Debian
       versions:
-        - bullseye
+        - all
     - name: Ubuntu
       versions:
-        - focal
+        - all
