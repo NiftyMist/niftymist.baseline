@@ -1,46 +1,46 @@
 ---
 # tasks file for niftymist.baseline
 - name: update apt cache
-  apt:
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
 
 - name: install baseline packages
-  package:
+  ansible.builtin.package:
     name: "{{ baseline_packages }}"
     state: present
   register: package_install
   ignore_errors: true
 
 - name: install baseline packages if failed
-  package:
+  ansible.builtin.package:
     name: "{{ baseline_packages }}"
     state: present
   when: package_install.failed
 
 - name: create groups
-  group:
+  ansible.builtin.group:
     state: present
     name: "{{ item }}"
   with_items: "{{ baseline_groups }}"
   when: baseline_groups is defined
 
 - name: ensure ansible user is created
-  user:
+  ansible.builtin.user:
     name: "{{ baseline_ansible_user }}"
     state: present
     password: "{{ baseline_ansible_password | default('changeme') }}"
   no_log: true
 
 - name: ensure ansible user has deployed ssh key
-  authorized_key:
+  ansible.builtin.authorized_key:
     user: "{{ baseline_ansible_user }}"
     state: present
     key: "{{ baseline_ansible_user_pub_key_url | default(omit) }}"
   when: baseline_ansible_user_pub_key_url is defined
 
 - name: ensure standard user is created
-  user:
+  ansible.builtin.user:
     name: "{{ baseline_standard_user }}"
     state: present
     shell: /bin/bash
@@ -49,14 +49,14 @@
   when: baseline_standard_user is defined
 
 - name: ensure ansible user has deployed ssh key
-  authorized_key:
+  ansible.builtin.authorized_key:
     user: "{{ baseline_standard_user }}"
     state: present
     key: "{{ baseline_ansible_user_pub_key_url | default(omit) }}"
   when: baseline_ansible_user_pub_key_url is defined
 
 - name: deploy ansible sudoers file
-  template:
+  ansible.builtin.template:
     src: nopasswd.j2
     dest: "/etc/sudoers.d/{{ baseline_ansible_user }}"
     owner: root
@@ -64,7 +64,7 @@
     mode: 0644
 
 - name: deploy standard sudoers file
-  template:
+  ansible.builtin.template:
     src: passwd.j2
     dest: "/etc/sudoers.d/{{ baseline_standard_user }}"
     owner: root
@@ -74,7 +74,7 @@
   when: baseline_standard_user is defined
 
 - name: deploy /etc/motd
-  template:
+  ansible.builtin.template:
     src: motd.j2
     dest: /etc/motd
     owner: root
@@ -82,7 +82,7 @@
     mode: 0644
 
 - name: set roots bash prompt
-  template:
+  ansible.builtin.template:
     src: root-bashrc
     dest: /root/.bashrc
     owner: root
