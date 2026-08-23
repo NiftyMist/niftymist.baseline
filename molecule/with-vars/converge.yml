@@ -1,7 +1,7 @@
 ---
 - name: Converge
   hosts: all
-  become: true
+  #become: true
   vars:
     baseline_ansible_user: ansible
     baseline_ansible_password: $6$u5vO2.ctI8dhAC2w$cCKzrf1hJCDiVla.FoTJlwv2oticvpd54OTAdSBAuaPqEfMgOGAOpkdb3cxfHE3T5nyzGEtlFDfCw5JZQmiOp.  # yamllint disable-line rule:line-length
