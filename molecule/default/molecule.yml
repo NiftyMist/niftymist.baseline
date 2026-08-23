@@ -15,8 +15,9 @@ provisioner:
   name: ansible
   config_options:
     defaults:
-      stdout_callback: yaml
+      stdout_callback: default
       bin_ansible_callback: true
+      result_format: yaml
 verifier:
   name: ansible
 lint: |
